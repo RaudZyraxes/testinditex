@@ -1,0 +1,62 @@
+import { useState } from 'react';
+import { addToCart } from '../api/client';
+import './ProductActions.css';
+
+export default function ProductActions({ product, onAddToCart }) {
+  const colors = product.options?.colors ?? [];
+  const storages = product.options?.storages ?? [];
+
+  const [colorCode, setColorCode] = useState(colors[0]?.code ?? '');
+  const [storageCode, setStorageCode] = useState(storages[0]?.code ?? '');
+  const [adding, setAdding] = useState(false);
+
+  const handleAdd = async () => {
+    setAdding(true);
+    try {
+      const { count } = await addToCart({ id: product.id, colorCode, storageCode });
+      onAddToCart(count);
+    } finally {
+      setAdding(false);
+    }
+  };
+
+  return (
+    <section className="product-actions">
+      <div className="product-actions__selectors">
+        {storages.length > 0 && (
+          <label className="product-actions__label">
+            <span>Storage</span>
+            <select
+              value={storageCode}
+              onChange={(e) => setStorageCode(e.target.value)}
+            >
+              {storages.map((s) => (
+                <option key={s.code} value={s.code}>{s.name}</option>
+              ))}
+            </select>
+          </label>
+        )}
+        {colors.length > 0 && (
+          <label className="product-actions__label">
+            <span>Color</span>
+            <select
+              value={colorCode}
+              onChange={(e) => setColorCode(e.target.value)}
+            >
+              {colors.map((c) => (
+                <option key={c.code} value={c.code}>{c.name}</option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+      <button
+        className="product-actions__add"
+        onClick={handleAdd}
+        disabled={adding || (colors.length === 0 && storages.length === 0)}
+      >
+        {adding ? 'Adding...' : 'Add to cart'}
+      </button>
+    </section>
+  );
+}

@@ -1,0 +1,56 @@
+.product-actions { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.product-actions__selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.product-actions__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 140px;
+}
+
+.product-actions__label span {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #666;
+}
+
+.product-actions__label select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 0.875rem;
+  color: #111;
+  cursor: pointer;
+  appearance: auto;
+}
+
+.product-actions__label select:focus {
+  outline: 2px solid #111;
+  outline-offset: 1px;
+}
+
+.product-actions__add {
+  padding: 0.9rem 2rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+  min-width: 200px;
+}
+
+.product-actions__add:hover:not(:disabled) { background: #333; }
+.product-actions__add:disabled { background: #999; cursor: not-allowed; }
