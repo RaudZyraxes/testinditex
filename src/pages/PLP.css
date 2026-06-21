@@ -45,7 +45,7 @@
   letter-spacing: 0.05em;
 }
 
-.plp__search::placeholder { color: #bbb; }
+.plp__search::placeholder { color: #111; }
 
 .plp__meta {
   display: flex;
@@ -58,7 +58,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #a09a90;
+  color: #111;
 }
 
 .plp__grid {
