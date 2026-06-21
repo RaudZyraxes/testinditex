@@ -2,14 +2,14 @@
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background: #f5f0e8;
+  background: #f7f6f4;
   color: #111;
   min-height: 100vh;
 }
 
 a { color: inherit; text-decoration: none; }
 
-main { background: #f5f0e8; }
+main { background: #f7f6f4; }
 
 .loading {
   display: flex;
