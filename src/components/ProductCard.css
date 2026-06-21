@@ -1,10 +1,22 @@
 .product-card {
+  position: relative;
   background: #fff;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   border: none;
   transition: background 0.2s;
+}
+
+.product-card::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: #ddd8d0;
+  pointer-events: none;
 }
 
 .product-card:hover,
