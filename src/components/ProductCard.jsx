@@ -17,12 +17,15 @@ export default function ProductCard({ product, onClick }) {
           alt={`${product.brand} ${product.model}`}
           loading="lazy"
         />
+        <div className="product-card__overlay">
+          <span>View product</span>
+        </div>
       </div>
       <div className="product-card__info">
         <p className="product-card__brand">{product.brand}</p>
         <p className="product-card__model">{product.model}</p>
         <p className="product-card__price">
-          {product.price ? `${product.price} EUR` : 'Price not available'}
+          {product.price ? `${product.price} EUR` : '—'}
         </p>
       </div>
     </article>

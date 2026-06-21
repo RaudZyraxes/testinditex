@@ -49,7 +49,7 @@ describe('PLP', () => {
   it('shows empty state when no results', () => {
     renderPLP();
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'zzznomatch' } });
-    expect(screen.getByText(/no products found/i)).toBeInTheDocument();
+    expect(screen.getByText(/no results/i)).toBeInTheDocument();
   });
 
   it('shows loading state', () => {
