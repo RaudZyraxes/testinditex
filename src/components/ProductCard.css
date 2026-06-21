@@ -3,13 +3,13 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  border: 1px solid #e8e8e8;
-  transition: border-color 0.2s;
+  border: none;
+  transition: background 0.2s;
 }
 
 .product-card:hover,
 .product-card:focus-visible {
-  border-color: #111;
+  background: #faf9f7;
   outline: none;
 }
 
