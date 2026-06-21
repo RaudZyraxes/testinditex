@@ -64,7 +64,7 @@
 .plp__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 0;
+  row-gap: 1.5rem;
   column-gap: 1.5rem;
   background: transparent;
   border: none;
