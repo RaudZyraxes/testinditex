@@ -29,7 +29,6 @@
   font-size: 0.875rem;
   color: #111;
   cursor: pointer;
-  appearance: auto;
 }
 
 .product-actions__label select:focus {
@@ -42,9 +41,9 @@
   background: #111;
   color: #fff;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
@@ -54,3 +53,4 @@
 
 .product-actions__add:hover:not(:disabled) { background: #333; }
 .product-actions__add:disabled { background: #999; cursor: not-allowed; }
+.product-actions__add.added { background: #2d7a2d; }

@@ -1,28 +1,27 @@
-import { useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
-import PLP from './pages/PLP';
-import PDP from './pages/PDP';
+
+const PLP = lazy(() => import('./pages/PLP'));
+const PDP = lazy(() => import('./pages/PDP'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
-  const [cartCount, setCartCount] = useState(() =>
-    Number(localStorage.getItem('cartCount') || 0)
-  );
-
-  const updateCart = (count) => {
-    setCartCount(count);
-    localStorage.setItem('cartCount', count);
-  };
-
   return (
     <BrowserRouter>
-      <Header cartCount={cartCount} />
-      <main>
-        <Routes>
-          <Route path="/" element={<PLP />} />
-          <Route path="/product/:id" element={<PDP onAddToCart={updateCart} />} />
-        </Routes>
-      </main>
+      <CartProvider>
+        <Header />
+        <main>
+          <Suspense fallback={<div className="loading">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<PLP />} />
+              <Route path="/product/:id" element={<PDP />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </main>
+      </CartProvider>
     </BrowserRouter>
   );
 }

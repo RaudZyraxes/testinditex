@@ -1,30 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getProducts } from '../api/client';
+import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/ProductCard';
 import './PLP.css';
 
 export default function PLP() {
-  const [products, setProducts] = useState([]);
+  const { products, loading, error } = useProducts();
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getProducts()
-      .then((data) => setProducts(data))
-      .finally(() => setLoading(false));
-  }, []);
 
   const filtered = products.filter((p) => {
     const q = search.toLowerCase();
-    return (
-      p.brand.toLowerCase().includes(q) ||
-      p.model.toLowerCase().includes(q)
-    );
+    return p.brand.toLowerCase().includes(q) || p.model.toLowerCase().includes(q);
   });
 
   if (loading) return <div className="loading">Loading products...</div>;
+  if (error) return <div className="loading">{error}</div>;
 
   return (
     <div className="plp">

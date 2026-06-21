@@ -7,10 +7,11 @@ const FIELDS = [
   ['CPU', 'cpu'],
   ['RAM', 'ram'],
   ['OS', 'os'],
-  ['Screen Resolution', 'displayResolution'],
+  ['Screen Size', 'displayResolution'],
+  ['Screen Resolution', 'displaySize'],
   ['Battery', 'battery'],
   ['Primary Camera', 'primaryCamera'],
-  ['Secondary Camera', 'secondaryCameras'],
+  ['Secondary Camera', 'secondaryCmera'],
   ['Dimensions', 'dimentions'],
   ['Weight', 'weight'],
 ];

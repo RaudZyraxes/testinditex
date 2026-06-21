@@ -1,20 +1,28 @@
 import { useState } from 'react';
 import { addToCart } from '../api/client';
+import { useCart } from '../context/CartContext';
 import './ProductActions.css';
 
-export default function ProductActions({ product, onAddToCart }) {
+export default function ProductActions({ product }) {
   const colors = product.options?.colors ?? [];
   const storages = product.options?.storages ?? [];
 
   const [colorCode, setColorCode] = useState(colors[0]?.code ?? '');
   const [storageCode, setStorageCode] = useState(storages[0]?.code ?? '');
   const [adding, setAdding] = useState(false);
+  const [feedback, setFeedback] = useState('');
+  const { addItem } = useCart();
 
   const handleAdd = async () => {
     setAdding(true);
     try {
-      const { count } = await addToCart({ id: product.id, colorCode, storageCode });
-      onAddToCart(count);
+      await addToCart({ id: product.id, colorCode, storageCode });
+      addItem(product, colorCode, storageCode);
+      setFeedback('Added!');
+      setTimeout(() => setFeedback(''), 1500);
+    } catch {
+      setFeedback('Error. Try again.');
+      setTimeout(() => setFeedback(''), 2000);
     } finally {
       setAdding(false);
     }
@@ -28,7 +36,7 @@ export default function ProductActions({ product, onAddToCart }) {
             <span>Storage</span>
             <select
               value={storageCode}
-              onChange={(e) => setStorageCode(e.target.value)}
+              onChange={(e) => setStorageCode(Number(e.target.value))}
             >
               {storages.map((s) => (
                 <option key={s.code} value={s.code}>{s.name}</option>
@@ -41,7 +49,7 @@ export default function ProductActions({ product, onAddToCart }) {
             <span>Color</span>
             <select
               value={colorCode}
-              onChange={(e) => setColorCode(e.target.value)}
+              onChange={(e) => setColorCode(Number(e.target.value))}
             >
               {colors.map((c) => (
                 <option key={c.code} value={c.code}>{c.name}</option>
@@ -51,11 +59,11 @@ export default function ProductActions({ product, onAddToCart }) {
         )}
       </div>
       <button
-        className="product-actions__add"
+        className={`product-actions__add${feedback === 'Added!' ? ' added' : ''}`}
         onClick={handleAdd}
-        disabled={adding || (colors.length === 0 && storages.length === 0)}
+        disabled={adding}
       >
-        {adding ? 'Adding...' : 'Add to cart'}
+        {feedback || (adding ? 'Adding...' : 'Add to cart')}
       </button>
     </section>
   );
