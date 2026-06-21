@@ -45,7 +45,7 @@
   letter-spacing: 0.05em;
 }
 
-.plp__search::placeholder { color: #111; }
+.plp__search::placeholder { color: #888; }
 
 .plp__meta {
   display: flex;
