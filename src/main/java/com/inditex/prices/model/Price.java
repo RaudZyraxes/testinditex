@@ -1,33 +1,43 @@
 package com.inditex.prices.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PRICES")
+@Getter
+@NoArgsConstructor
 public class Price {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "brand_id", nullable = false)
     private Long brandId;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private Integer priceList;
-    private Long productId;
-    private Integer priority;
-    private BigDecimal price;
-    private String curr;
 
-    public Long getId() { return id; }
-    public Long getBrandId() { return brandId; }
-    public LocalDateTime getStartDate() { return startDate; }
-    public LocalDateTime getEndDate() { return endDate; }
-    public Integer getPriceList() { return priceList; }
-    public Long getProductId() { return productId; }
-    public Integer getPriority() { return priority; }
-    public BigDecimal getPrice() { return price; }
-    public String getCurr() { return curr; }
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDateTime endDate;
+
+    @Column(name = "price_list", nullable = false)
+    private Integer priceList;
+
+    @Column(name = "product_id", nullable = false)
+    private Long productId;
+
+    @Column(nullable = false)
+    private Integer priority;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
+
+    @Column(nullable = false, length = 3)
+    private String curr;
 }

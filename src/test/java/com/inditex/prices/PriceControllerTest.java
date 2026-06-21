@@ -74,4 +74,21 @@ class PriceControllerTest {
             .andExpect(jsonPath("$.priceList").value(4))
             .andExpect(jsonPath("$.price").value(38.95));
     }
+
+    @Test
+    void returns404_when_no_applicable_price() throws Exception {
+        mvc.perform(get(URL)
+                .param("date", "2019-01-01T00:00:00")
+                .param("productId", String.valueOf(PRODUCT))
+                .param("brandId", String.valueOf(BRAND)))
+            .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void returns400_when_date_param_missing() throws Exception {
+        mvc.perform(get(URL)
+                .param("productId", String.valueOf(PRODUCT))
+                .param("brandId", String.valueOf(BRAND)))
+            .andExpect(status().isBadRequest());
+    }
 }
