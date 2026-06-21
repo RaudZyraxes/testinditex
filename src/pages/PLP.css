@@ -64,12 +64,10 @@
 .plp__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  background: #ffffff;
+  row-gap: 0;
+  column-gap: 1.5rem;
+  background: transparent;
   border: none;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(80,60,30,0.07);
 }
 
 .plp__grid .product-card { background: #ffffff; border: none; }
